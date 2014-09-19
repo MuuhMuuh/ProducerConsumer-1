@@ -26,21 +26,7 @@ namespace ProducerConsumer
                 _buffer.Take();
                 Console.WriteLine("Consumer: Take {0}", i);
             }
-
-            //while (true)
-            //{
-            //    if (_buffer.IsFull())
-            //    {
-            //        _buffer.Take();
-            //        Console.WriteLine("Consumer: Take 1");
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("Consumer: Buffer is not full yet");
-            //    }
-            //}
-
         }
-      }
+    }
     }
 
