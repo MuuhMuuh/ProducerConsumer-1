@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ProducerConsumer
@@ -30,18 +31,32 @@ namespace ProducerConsumer
 
         public void Put(int i)
         {
-            _queue.Enqueue(i);
-            Console.WriteLine("Buffer: Item {0} added", i);
+            lock (_queue)
+            {
+                while (IsFull())
+                {
+                    //Afvent indtil der er plads
+                    Monitor.Wait(_queue);
+                }
+                _queue.Enqueue(i);
+                Console.WriteLine("Buffer: Item {0} added", i);
+            }
         }
 
         public int Take()
         {
-            while (_queue.Count == 0)
+            lock (_queue)
             {
-                //Afvent på at køen bliver fyldt
-            }
+                while (_queue.Count == 0)
+                {
+                    //Afvent på at køen bliver fyldt
+                    Monitor.Wait(_queue);
+                }
                 int temp = _queue.Dequeue();
+                Console.WriteLine("Buffer: Item {0} removed", temp);
                 return temp;
+                
+            }
         }
 
     }

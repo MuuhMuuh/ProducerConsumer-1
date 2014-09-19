@@ -12,8 +12,8 @@ namespace ProducerConsumer
         {
             BoundedBuffer buffer = new BoundedBuffer(3);
 
-            Producer prod = new Producer(buffer, 10);
-            Consumer cons = new Consumer(buffer, 10);
+            Producer prod = new Producer(buffer, 30);
+            Consumer cons = new Consumer(buffer, 30);
 
 
             //Brug Parallel.Invoke til at køre dem

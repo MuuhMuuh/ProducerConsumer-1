@@ -28,7 +28,7 @@ namespace ProducerConsumer
                 }
                 else
                 {
-                    _buffer.Put(i); 
+                    _buffer.Put(i);
                     Console.WriteLine("Producer: Put {0}", i);
                     i++;
                 }
