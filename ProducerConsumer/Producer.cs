@@ -29,7 +29,7 @@ namespace ProducerConsumer
                 else
                 {
                     _buffer.Put(i);
-                    Console.WriteLine("Producer: Put {0}", i);
+                    //Console.WriteLine("Producer: Put {0}", i);
                     i++;
                 }
 

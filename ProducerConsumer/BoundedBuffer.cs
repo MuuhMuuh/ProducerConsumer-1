@@ -40,6 +40,7 @@ namespace ProducerConsumer
                 }
                 _queue.Enqueue(i);
                 Console.WriteLine("Buffer: Item {0} added", i);
+                Monitor.PulseAll(_queue);
             }
         }
 
@@ -54,6 +55,7 @@ namespace ProducerConsumer
                 }
                 int temp = _queue.Dequeue();
                 Console.WriteLine("Buffer: Item {0} removed", temp);
+                Monitor.PulseAll(_queue);
                 return temp;
                 
             }
