@@ -21,11 +21,16 @@ namespace ProducerConsumer
 
         public void Run()
         {
-            for (int i = 0; i < _expectedAmount; i++)
+            //for (int i = 0; i < _expectedAmount; i++)
+            //{
+            //    _buffer.Take();
+            //    //Console.WriteLine("Consumer: Take {0}", i);
+            //}
+            int temp;
+            do
             {
-                _buffer.Take();
-                //Console.WriteLine("Consumer: Take {0}", i);
-            }
+                temp = _buffer.Take();
+            } while (temp != -1);
         }
     }
     }
