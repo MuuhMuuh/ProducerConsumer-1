@@ -11,17 +11,20 @@ namespace ProducerConsumer
     {
         static void Main(string[] args)
         {
-            BoundedBuffer buffer = new BoundedBuffer(10000);
+            BoundedBuffer buffer = new BoundedBuffer(4);
 
-            Producer prod = new Producer(buffer, 21000000);
-            Consumer cons = new Consumer(buffer, 21000000);
+            Producer prod = new Producer(buffer, 15);
+            Consumer cons = new Consumer(buffer);
+            Consumer cons2 = new Consumer(buffer);
 
 
             //Brug Parallel.Invoke til at køre dem
            Parallel.Invoke(
                 () => prod.Run(), 
-                () => cons.Run()
+                () => cons.Run(),
+                () => cons2.Run()
                 );
+            Console.WriteLine("Done!");
            Console.ReadLine();
         }
     }

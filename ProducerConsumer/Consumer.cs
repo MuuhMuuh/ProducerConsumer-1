@@ -10,13 +10,11 @@ namespace ProducerConsumer
     class Consumer
     {
         private BoundedBuffer _buffer;
-        private int _expectedAmount;
-
-        public Consumer(BoundedBuffer buffer, int expectedAmount)
+        
+        public Consumer(BoundedBuffer buffer)
         {
             _buffer = buffer;
-            _expectedAmount = expectedAmount;
-
+            
         }
 
         public void Run()

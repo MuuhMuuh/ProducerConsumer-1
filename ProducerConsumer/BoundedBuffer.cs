@@ -11,6 +11,7 @@ namespace ProducerConsumer
     {
         private Queue<int> _queue = new Queue<int>();
         private int _bufferSize;
+        private bool LastElement = false;
 
         public BoundedBuffer(int bufferSize)
         {
@@ -48,12 +49,30 @@ namespace ProducerConsumer
         {
             lock (_queue)
             {
+                if (LastElement)
+                {
+                    return -1;
+                }
+
                 while (_queue.Count == 0)
                 {
                     //Afvent på at køen bliver fyldt
                     Monitor.Wait(_queue);
+                    if (LastElement)
+                    {
+                        return -1;
+                    }
                 }
                 int temp = _queue.Dequeue();
+                //if(temp == -1)
+                //{
+                //    _queue.Enqueue(-1);
+                //}
+
+                if (temp == -1)
+                {
+                    LastElement = true;
+                }
                 Console.WriteLine("Buffer: Item {0} removed", temp);
                 Monitor.PulseAll(_queue);
                 return temp;
